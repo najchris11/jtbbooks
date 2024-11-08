@@ -12,7 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["var(--font-roboto)", "Roboto", "sans-serif"],
+      }
     },
   },
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  // darkMode: false, // turns off dark mode
   plugins: [],
 } satisfies Config;
