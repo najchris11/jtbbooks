@@ -4,7 +4,6 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   cssVariables: true, // Enables CSS variables for theme colors
   palette: {
-    mode: 'light', // Dark mode is not supported in this theme
     primary: {
       main: '#57266D', // Honey Flower
       light: '#BD9CD3', // Light Pastel Purple

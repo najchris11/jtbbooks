@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/theme";
+import theme from "../theme";
 import "./globals.css";
-import NavBar from "@/components/navbar";
-
-const roboto = Roboto({
-  display: "swap",
-  weight: ['300', '400', '500', '700'],
-  subsets: ["latin"],
-  variable: '--font-roboto',
-});
+import Navbar from "./components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.variable}>
-        <NavBar />
-        <AppRouterCacheProvider options={{ enableCssLayer: true }} >
+      <body>
+        <AppRouterCacheProvider options={{ key: 'css' }}>
           <ThemeProvider theme={theme}>
+            <Navbar />
           {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
