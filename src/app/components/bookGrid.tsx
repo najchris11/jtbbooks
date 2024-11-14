@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Grid2, Box, Card, CardMedia, Modal, Typography } from '@mui/material';
+import { Grid2, Box, Card } from '@mui/material';
 import { Book } from '@/app/types';
 import BookModal from '@/app/components/bookModal';
 import Image from 'next/image';

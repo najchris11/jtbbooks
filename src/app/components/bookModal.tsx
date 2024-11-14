@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, Box, Typography, Button, Tooltip, IconButton } from '@mui/material';
+import { Modal, Box, Typography, Tooltip, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Book } from '../types';
 
