@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Grid2, Box, Card, CardMedia, Modal, Typography } from '@mui/material';
 import { Book } from '@/app/types';
 import BookModal from '@/app/components/bookModal';
+import Image from 'next/image';
 
 interface BookGridProps {
   books: Book[];
@@ -51,13 +52,17 @@ export default function BookGrid({ books, selectedGenre }: BookGridProps) {
             {filteredBooks.map((book) => (
               <Grid2 size={{ xs: 6, md: 2, sm: 4 }} key={book.id}>
                 <Card onClick={() => handleBookClick(book)} sx={{ cursor: 'pointer' }}>
-                  <CardMedia
-                    component="img"
-                    image={book.cover}
+                <Image
+                    src={book.cover}
                     alt={book.title}
-                    sx={{ height: 200 }}
-                  />
-                </Card>
+                    width={200}
+                    height={200}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto', // Maintains the aspect ratio by adjusting height
+                      objectFit: 'contain',
+                    }}
+                  />                </Card>
               </Grid2>
             ))}
           </Grid2>

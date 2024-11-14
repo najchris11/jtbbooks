@@ -29,7 +29,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'var(--font-roboto), Arial, sans-serif', // Custom font variable
+    fontFamily: 'Arial, sans-serif', // Custom font variable
   },
 });
 

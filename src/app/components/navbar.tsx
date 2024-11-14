@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = [
   { label: 'Home', path: '/' },
@@ -40,26 +41,17 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ paddingTop: 2 }}> {/* Adds top padding to bring down brand name */}
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Jump the Broom Books
-          </Typography>
-
-          {/* Mobile Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            flexDirection: { xs: 'row', md: 'column' },
+            alignItems: { xs: 'center', md: 'center' },
+          }}
+        >
+          {/* Mobile Menu Icon on the left */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, marginRight: 1 }}>
             <IconButton
               size="large"
               aria-label="menu"
@@ -70,34 +62,37 @@ function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-              keepMounted
-              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.path} onClick={() => handleNavigate(page.path)}>
-                  <Typography textAlign="center">{page.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
 
-          {/* Desktop Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* Brand Name and Icon */}
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: { md: 1 }, flexGrow: { xs: 1, md: 0 } }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none',
+                textAlign: 'center',
+                marginLeft: { xs: 1, md: 0 }, // Offset brand name on mobile
+              }}
+            >
+              Jump the Broom Books
+            </Typography>
+            <AdbIcon sx={{ ml: 1 }} />
+          </Box>
+
+          {/* Desktop Menu (Tabs below the brand name) */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             {pages.map((page) => (
               <Button
                 key={page.path}
                 onClick={() => handleNavigate(page.path)}
                 sx={{
-                  my: 2,
+                  my: 1,
+                  mx: 1.5,
                   color: 'white',
-                  display: 'block',
                   borderBottom: pathname === page.path ? '2px solid white' : 'none',
                 }}
               >
@@ -105,6 +100,24 @@ function Navbar() {
               </Button>
             ))}
           </Box>
+
+          {/* Mobile Menu */}
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{ display: { xs: 'block', md: 'none' } }}
+          >
+            {pages.map((page) => (
+              <MenuItem key={page.path} onClick={() => handleNavigate(page.path)}>
+                <Typography textAlign="center">{page.label}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Toolbar>
       </Container>
     </AppBar>
