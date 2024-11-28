@@ -6,7 +6,7 @@ import { books } from '../books';
 import BookGrid from '@/app/components/bookGrid';
 import FilterButtons from '@/app/components/filterButtons';
 
-const genres = [...new Set(books.map((book) => book.genre))]; // Unique genres from book data
+const genres = [...new Set(books.flatMap((book) => book.genre))];
 
 export default function FirstShelfPage() {
   const [filteredGenres, setFilteredGenres] = useState<{ [key: string]: boolean }>({});
@@ -21,14 +21,10 @@ export default function FirstShelfPage() {
   };
 
   const filteredBooks = books
-    .filter((book) => !filteredGenres[book.genre]) // Filter by genre
+    .filter((book) => !book.genre.some((genre) => filteredGenres[genre])) // Filter by genre
     .filter((book) =>
       searchQuery === '' ||
-      book.title.toLowerCase().includes(searchQuery) || // Match title
-      book.genre.toLowerCase().includes(searchQuery) || // Match genre
-      (book.themes && book.themes.toLowerCase().includes(searchQuery)) || // Match themes/tropes
-      (book.author && book.author.toLowerCase().includes(searchQuery)) || // Match author
-      book.description.toLowerCase().includes(searchQuery) // Match description
+      book.title.toLowerCase().includes(searchQuery) // Match title
     );
 
   return (

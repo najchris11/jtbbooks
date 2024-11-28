@@ -30,7 +30,7 @@ export default function BookGrid({ books, selectedGenre }: BookGridProps) {
           width: '100%',
           maxWidth: 800,
           margin: '0 auto',
-          backgroundImage: 'url(/bookshelf-frame.png)',
+          backgroundImage: 'url(/genericBookshelf.png)',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',

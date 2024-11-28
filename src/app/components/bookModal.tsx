@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, Box, Typography, Tooltip, IconButton } from '@mui/material';
+import { Modal, Box, Typography, Tooltip, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Book } from '../types';
 
@@ -53,15 +53,20 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
 
         {/* Tooltip for Tropes/Themes */}
         <Tooltip title="Tropes/Themes">
-          <Typography variant="caption" display="block" gutterBottom>
-            {book.themes}
-          </Typography>
+            <Typography variant="caption" display="block" gutterBottom>
+            {book.genre.join(', ')}
+            </Typography>
         </Tooltip>
 
         {/* Book Blurb */}
         <Typography variant="body1" sx={{ mt: 2 }}>
           {book.description}
         </Typography>
+        <Button variant='contained'>
+          <a href={book.link} target="_blank" rel="noreferrer">
+            Buy Now
+          </a>
+        </Button>
       </Box>
     </Modal>
   );
