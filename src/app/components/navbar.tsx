@@ -12,7 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import jtbIcon from '/public/logos/jtbGlyphWhiteBook.png';
+import Image from 'next/image';
 
 const pages = [
   { label: 'Home', path: '/' },
@@ -80,7 +81,7 @@ function Navbar() {
             >
               Jump the Broom Books
             </Typography>
-            <AdbIcon sx={{ ml: 1 }} />
+            <Image src={jtbIcon} alt="Jump the Broom Books" width={50} height={50} />
           </Box>
 
           {/* Desktop Menu (Tabs below the brand name) */}
