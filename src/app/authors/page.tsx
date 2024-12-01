@@ -122,7 +122,7 @@ export default function Authors() {
           </Typography>
           <Typography variant="body1">
             8.) AI standards. While we understand that some individuals opt to
-            use AI, we don't promote or encourage it. Any obvious AI-generated
+            use AI, we don&apos;t promote or encourage it. Any obvious AI-generated
             art will be automatically declined. AI-written books are prohibited.
           </Typography>
         </CardContent>

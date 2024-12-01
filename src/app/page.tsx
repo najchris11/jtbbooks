@@ -37,7 +37,7 @@ export default function Home() {
         What is Jump The Broom Books?
           </Typography>
           <Typography variant="body1">
-            Jump the Broom Books is a free ebook downloading event that exclusively highlights Black stories written by Black authors. Why are we called “Jump The Broom"?
+            Jump the Broom Books is a free ebook downloading event that exclusively highlights Black stories written by Black authors. Why are we called &quot;Jump The Broom&quot;?
           </Typography>
           <Typography variant="body1">
             African American history is deeply rooted in the unjust act of slavery. Enslavers imposed many restrictions to prevent Black communities from forming and thriving. One of these restrictions was that enslaved people were not legally allowed to marry. In turn, those in love would jump over a broom to symbolize their commitment to one another.
