@@ -12,6 +12,7 @@ interface FilterButtonsProps {
     ageGroups: { [key: string]: boolean };
     genres: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    searchQuery: string; // Add searchQuery here
   }) => void;
 }
 
@@ -56,9 +57,10 @@ export default function FilterButtons({
       tropes: {},
     });
     onFilterChange({
-      ageGroups: {},
-      genres: {},
-      tropes: {},
+      ageGroups: selectedFilters.ageGroups,
+      genres: selectedFilters.genres,
+      tropes: selectedFilters.tropes,
+      searchQuery: '', // Pass an empty string or handle searchQuery as needed
     });
   };
 
