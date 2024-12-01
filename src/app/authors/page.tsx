@@ -155,11 +155,11 @@ export default function Authors() {
             How to Set Books Free on Amazon:
           </Typography>
           <Typography variant="body1">
-            JTB staff will be checking that all participating authors’ books are
+            JTB staff will be checking that all participating authors&apos; books are
             set free at 12am PST on the first day of the event. If your book is
             not free during this time, you will be removed from the website as
             we do not want to mislead any readers. If you are experiencing any
-            difficulty in setting your book free, don’t hesitate to send a
+            difficulty in setting your book free, don&apos;t hesitate to send a
             message in Discord, and one of the other participating authors or
             the JTB staff can help guide you through the process.
           </Typography>

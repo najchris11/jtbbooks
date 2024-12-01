@@ -57,7 +57,7 @@ export default function BookGrid({ books, filters }: BookGridProps) {
   const isSm = useMediaQuery(theme.breakpoints.only('sm'));
   const isMd = useMediaQuery(theme.breakpoints.only('md'));
   const isLg = useMediaQuery(theme.breakpoints.only('lg'));
-  const isXl = useMediaQuery(theme.breakpoints.only('xl'));
+  // const isXl = useMediaQuery(theme.breakpoints.only('xl'));
 
   const columns = {
     xs: 2,
