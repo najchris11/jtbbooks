@@ -1,35 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import { Box, TextField } from '@mui/material';
-import { books } from '../books';
+import { Box, TextField, Typography } from '@mui/material';
 import BookGrid from '@/app/components/bookGrid';
 import FilterButtons from '@/app/components/filterButtons';
-
-const genres = [...new Set(books.flatMap((book) => book.genre))];
+import { books } from '../books';
+import useBookFilters from '@/app/hooks/useBookFilters'; // Custom hook for filtering logic
 
 export default function FirstShelfPage() {
-  const [filteredGenres, setFilteredGenres] = useState<{ [key: string]: boolean }>({});
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  const handleFilterChange = (selectedGenres: { [key: string]: boolean }) => {
-    setFilteredGenres(selectedGenres);
-  };
+  const {
+    filteredBooks,
+    handleFilterChange,
+    ageGroups,
+    subGenres,
+    tropes,
+  } = useBookFilters(books, searchQuery);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());
   };
 
-  const filteredBooks = books
-    .filter((book) => !book.genre.some((genre) => filteredGenres[genre])) // Filter by genre
-    .filter((book) =>
-      searchQuery === '' ||
-      book.title.toLowerCase().includes(searchQuery) // Match title
-    );
-
   return (
     <Box sx={{ textAlign: 'center', padding: 2 }}>
-      {/* Combined Search Bar */}
+      {/* Page Title */}
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        Explore Your Next Read
+      </Typography>
+      
+      {/* Search Bar */}
       <TextField
         label="Search by title, genre, trope, or author"
         variant="outlined"
@@ -37,7 +36,16 @@ export default function FirstShelfPage() {
         onChange={handleSearchChange}
         sx={{ mb: 2, width: '80%', maxWidth: 400 }}
       />
-      <FilterButtons genres={genres} onFilterChange={handleFilterChange} />
+
+      {/* Filter Buttons */}
+      <FilterButtons
+        ageGroups={ageGroups}
+        subGenres={subGenres}
+        tropes={tropes}
+        onFilterChange={handleFilterChange}
+      />
+
+      {/* Filtered Book Grid */}
       <BookGrid books={filteredBooks} selectedGenre="All" />
     </Box>
   );

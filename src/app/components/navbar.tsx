@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import jtbIcon from '/public/logos/jtbGlyphWhiteBook.png';
 import Image from 'next/image';
+import localFont from 'next/font/local'; 
 
 const pages = [
   { label: 'Home', path: '/' },
@@ -22,6 +23,8 @@ const pages = [
   { label: 'Authors', path: '/authors' },
   // Add additional pages here
 ];
+
+const Gloria = localFont({src: '../fonts/Gloria.ttf'});
 
 function Navbar() {
   const router = useRouter();
@@ -78,6 +81,7 @@ function Navbar() {
                 textAlign: 'center',
                 marginLeft: { xs: 1, md: 0 }, // Offset brand name on mobile
               }}
+              className={Gloria.className}
             >
               Jump the Broom Books
             </Typography>
@@ -95,7 +99,10 @@ function Navbar() {
                   mx: 1.5,
                   color: 'white',
                   borderBottom: pathname === page.path ? '2px solid white' : 'none',
+                  fontFamily: 'Gloria, Arial, sans-serif',
+                  textTransform: 'none',
                 }}
+                className={Gloria.className}
               >
                 {page.label}
               </Button>
@@ -112,10 +119,12 @@ function Navbar() {
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
             sx={{ display: { xs: 'block', md: 'none' } }}
+            className={Gloria.className}
           >
             {pages.map((page) => (
               <MenuItem key={page.path} onClick={() => handleNavigate(page.path)}>
-                <Typography textAlign="center">{page.label}</Typography>
+                <Typography textAlign="center" sx={{ fontFamily: 'Gloria, Arial, sans-serif', textTransform: 'none' }}>
+                {page.label}</Typography>
               </MenuItem>
             ))}
           </Menu>

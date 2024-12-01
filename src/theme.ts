@@ -29,7 +29,25 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Arial, sans-serif', // Custom font variable
+    fontFamily: 'Arial, sans-serif', // Default font for body text
+    h1: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
+    h2: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
+    h3: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
+    h4: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
+    h5: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
+    h6: {
+      fontFamily: 'Gloria, Arial, sans-serif', // Custom font for headers
+    },
   },
 });
 
