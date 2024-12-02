@@ -13,6 +13,7 @@ interface BookGridProps {
     genres: { [key: string]: boolean };
     ageGroups: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    searchQuery: string; // Add searchQuery to the filters type
   };
 }
 
@@ -43,8 +44,13 @@ export default function BookGrid({ books, filters }: BookGridProps) {
         (trope) => filters.tropes[trope] && book.tropes.includes(trope)
       );
 
+      const searchQueryMatch =
+      filters.searchQuery === '' ||
+      book.title.toLowerCase().includes(filters.searchQuery) ||
+      book.author.toLowerCase().includes(filters.searchQuery);
+
     // Include the book if it matches all selected filters
-    return genreMatch && ageGroupMatch && tropeMatch;
+    return genreMatch && ageGroupMatch && tropeMatch && searchQueryMatch;
   });
 
   const handleBookClick = (book: Book) => {
