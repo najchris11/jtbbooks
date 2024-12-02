@@ -3,6 +3,7 @@
 
 import { Box, Typography, Card, CardContent } from '@mui/material';
 import localFont from 'next/font/local';
+import Link from 'next/link';
 
 const Gloria = localFont({ src: '../fonts/Gloria.ttf' });
 
@@ -181,7 +182,7 @@ export default function Authors() {
             <strong>Option 2:</strong> To set your book free without being
             enrolled in KDP Select, you MUST set your ebook free on all
             available vendors first and reach out to Amazon via email through
-            their customer service portal here. This email should contain links
+            their customer service portal <Link href='https://kdp.amazon.com/en_US/contact-us'>here</Link>. This email should contain links
             to where else your book is available to buy to prove your ebook is
             free elsewhere. In the dropdown, select “Pricing” then “Price
             Matching” and request a price match. This should be done a week
@@ -221,7 +222,7 @@ export default function Authors() {
             Communication:
           </Typography>
           <Typography variant="body1">
-            The majority of JTB communication will be occurring via Discord. You
+            The majority of JTB communication will be occurring via <Link href='https://discord.gg/SWVQ36VVjA'>Discord</Link>. You
             can reach out to the hosts, Annait LJ, Tiana M, and M. C. Jeter
             through here for any personal matters, questions, or concerns.
           </Typography>
