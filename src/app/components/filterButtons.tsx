@@ -23,16 +23,20 @@ export default function FilterButtons({
   onFilterChange,
 }: FilterButtonsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState({
-    ageGroups: {} as { [key: string]: boolean },
-    genres: {} as { [key: string]: boolean },
-    tropes: {} as { [key: string]: boolean },
+  const [selectedFilters, setSelectedFilters] = useState<{
+    ageGroups: { [key: string]: boolean };
+    genres: { [key: string]: boolean };
+    tropes: { [key: string]: boolean };
+  }>({
+    ageGroups: {},
+    genres: {},
+    tropes: {},
   });
 
   const [activeTab, setActiveTab] = useState(0); // Tabs for switching categories
 
   // Toggle individual filters
-  const handleToggleFilter = (filterType: string, filter: string) => {
+  const handleToggleFilter = (filterType: keyof typeof selectedFilters, filter: string) => {
     const updatedFilters = {
       ...selectedFilters[filterType],
       [filter]: !selectedFilters[filterType][filter],
@@ -45,7 +49,10 @@ export default function FilterButtons({
 
   // Apply filters and close modal
   const handleApplyFilters = () => {
-    onFilterChange(selectedFilters);
+    onFilterChange({
+      ...selectedFilters,
+      searchQuery: '', // Add searchQuery here
+    });
     setIsModalOpen(false);
   };
 
@@ -57,15 +64,15 @@ export default function FilterButtons({
       tropes: {},
     });
     onFilterChange({
-      ageGroups: selectedFilters.ageGroups,
-      genres: selectedFilters.genres,
-      tropes: selectedFilters.tropes,
-      searchQuery: '', // Pass an empty string or handle searchQuery as needed
+      ageGroups: {},
+      genres: {},
+      tropes: {},
+      searchQuery: '', // Clear searchQuery
     });
   };
 
   // Render filter options as pills
-  const renderFilterButtons = (filterType: string, options: string[]) => (
+  const renderFilterButtons = (filterType: keyof typeof selectedFilters, options: string[]) => (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2 }}>
       {options.map((option) => (
         <Button
@@ -95,13 +102,14 @@ export default function FilterButtons({
       </Tooltip>
 
       {/* Modal Component */}
-      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
         <Box
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            position: 'relative',
             width: '90%',
             maxWidth: 600,
             bgcolor: 'background.paper',
