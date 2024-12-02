@@ -13,43 +13,39 @@ interface BookGridProps {
     genres: { [key: string]: boolean };
     ageGroups: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
-    searchQuery: string; // Add searchQuery to the filters type
   };
+  searchQuery: string; // Explicitly declare searchQuery as a separate prop
 }
 
-export default function BookGrid({ books, filters }: BookGridProps) {
+export default function BookGrid({ books, filters, searchQuery }: BookGridProps) {
   const [openModal, setOpenModal] = useState(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
 
   // Dynamic filtering logic
   const filteredBooks = books.filter((book) => {
-    // Filter by genres
     const genreMatch =
       Object.keys(filters.genres).length === 0 ||
       Object.keys(filters.genres).some(
         (genre) => filters.genres[genre] && book.subGenres.includes(genre)
       );
-
-    // Filter by age groups
+  
     const ageGroupMatch =
       Object.keys(filters.ageGroups).length === 0 ||
       Object.keys(filters.ageGroups).some(
         (ageGroup) => filters.ageGroups[ageGroup] && book.ageRange.includes(ageGroup)
       );
-
-    // Filter by tropes
+  
     const tropeMatch =
       Object.keys(filters.tropes).length === 0 ||
       Object.keys(filters.tropes).some(
         (trope) => filters.tropes[trope] && book.tropes.includes(trope)
       );
-
-      const searchQueryMatch =
-      filters.searchQuery === '' ||
-      book.title.toLowerCase().includes(filters.searchQuery) ||
-      book.author.toLowerCase().includes(filters.searchQuery);
-
-    // Include the book if it matches all selected filters
+  
+    const searchQueryMatch =
+      searchQuery === '' ||
+      book.title.toLowerCase().includes(searchQuery) ||
+      book.author.toLowerCase().includes(searchQuery);
+  
     return genreMatch && ageGroupMatch && tropeMatch && searchQueryMatch;
   });
 
@@ -76,12 +72,12 @@ export default function BookGrid({ books, filters }: BookGridProps) {
   const currentBreakpoint = isXs
     ? 'xs'
     : isSm
-    ? 'sm'
-    : isMd
-    ? 'md'
-    : isLg
-    ? 'lg'
-    : 'xl';
+      ? 'sm'
+      : isMd
+        ? 'md'
+        : isLg
+          ? 'lg'
+          : 'xl';
 
   const columnsPerRow = columns[currentBreakpoint];
 

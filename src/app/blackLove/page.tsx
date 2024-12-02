@@ -84,7 +84,7 @@ export default function BlackLoveShelf() {
       </Box>
 
       {/* Book Grid with Filters */}
-      <BookGrid books={books} filters={{ ...selectedFilters, searchQuery }} />
+      <BookGrid books={books} filters={selectedFilters} searchQuery={searchQuery} />
     </Box>
   );
 }
