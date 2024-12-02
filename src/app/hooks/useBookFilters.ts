@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
+import { Book } from '@/app/types';
 
-export default function useBookFilters(books, searchQuery) {
+export default function useBookFilters(books: Book[], searchQuery : string) {
   const [filteredAgeGroups, setFilteredAgeGroups] = useState<{ [key: string]: boolean }>({});
   const [filteredSubGenres, setFilteredSubGenres] = useState<{ [key: string]: boolean }>({});
   const [filteredTropes, setFilteredTropes] = useState<{ [key: string]: boolean }>({});
@@ -19,7 +20,7 @@ export default function useBookFilters(books, searchQuery) {
     return books
       .filter((book) => 
         !Object.keys(filteredAgeGroups).some(
-          (ageGroup) => filteredAgeGroups[ageGroup] && book.ageRange === ageGroup
+          (ageGroup) => filteredAgeGroups[ageGroup] && book.ageRange.includes(ageGroup)
         )
       )
       .filter((book) =>
