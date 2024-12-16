@@ -149,7 +149,7 @@ export default function Home() {
               Annait LJ
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}> {/* Add margin bottom for spacing */}
-              Annait LJ is a contemporary romance author who loves writing about Black love in all its forms. When she's not writing, she can be found curating her next read, playing video games, or analyzing TV shows with her husband.
+              Annait LJ is a contemporary romance author who loves writing about Black love in all its forms. When she&apos;s not writing, she can be found curating her next read, playing video games, or analyzing TV shows with her husband.
             </Typography>
             <Link href="https://www.annaitlj.com/" target="_blank" rel="noopener noreferrer">
               www.annaitlj.com
@@ -181,7 +181,7 @@ export default function Home() {
               M. C. Jeter
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              M. C. Jeter is a new-adult and young adult fantasy romance author. When she's not writing, she can be found studying for the MCAT or working at a local clinic. Her stories feature strong female leads who learn to embrace the magic within them, and she has many more stories she wishes to tell.
+              M. C. Jeter is a new-adult and young adult fantasy romance author. When she&apos;s not writing, she can be found studying for the MCAT or working at a local clinic. Her stories feature strong female leads who learn to embrace the magic within them, and she has many more stories she wishes to tell.
             </Typography>
             <Link href="https://www.mcjeterbooks.com/" target="_blank" rel="noopener noreferrer">
               www.mcjeterbooks.com
@@ -212,7 +212,7 @@ export default function Home() {
               Tiana M
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Tiana M is a 23 year old dystopian fantasy author who writes about dark themes with positive messages. When she's not working one of her part time jobs, she's playing Zelda or Stardew valley. Her favorite genre to read is dystopian and fantasy with a little bit of romance. You can find Slim building another Lego set or crocheting a blanket depending on the mood she's in.
+              Tiana M is a 23 year old dystopian fantasy author who writes about dark themes with positive messages. When she&apos;s not working one of her part time jobs, she&apos;s playing Zelda or Stardew valley. Her favorite genre to read is dystopian and fantasy with a little bit of romance. You can find Slim building another Lego set or crocheting a blanket depending on the mood she&apos;s in.
             </Typography>
             <Link href="https://www.slims-universe.com/" target="_blank" rel="noopener noreferrer">
               www.slims-universe.com
