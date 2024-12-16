@@ -8,21 +8,21 @@ import theme from "@/theme";
 import FilterButtons from '@/app/components/filterButtons';
 
 export default function BlackLoveShelf() {
-  const [selectedFilters, setSelectedFilters] = useState({
-    ageGroups: {} as { [key: string]: boolean },
-    genres: {} as { [key: string]: boolean },
-    tropes: {} as { [key: string]: boolean },
-  });
+  // const [selectedFilters, setSelectedFilters] = useState({
+  //   ageGroups: {} as { [key: string]: boolean },
+  //   genres: {} as { [key: string]: boolean },
+  //   tropes: {} as { [key: string]: boolean },
+  // });
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const handleFilterChange = (filters: {
-    ageGroups: { [key: string]: boolean };
-    genres: { [key: string]: boolean };
-    tropes: { [key: string]: boolean };
-    searchQuery: string;
-  }) => {
-    setSelectedFilters(filters);
-  };
+  // const handleFilterChange = (filters: {
+  //   ageGroups: { [key: string]: boolean };
+  //   genres: { [key: string]: boolean };
+  //   tropes: { [key: string]: boolean };
+  //   searchQuery: string;
+  // }) => {
+  //   setSelectedFilters(filters);
+  // };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());
@@ -48,12 +48,12 @@ export default function BlackLoveShelf() {
           sx={{ width: '80%', maxWidth: 400 }}
         />
         {/* Filter Buttons */}
-        <FilterButtons
+        {/* <FilterButtons
           ageGroups={[...new Set(books.flatMap((book) => book.ageRange))]}
           genres={[...new Set(books.flatMap((book) => book.subGenres))]}
           tropes={[...new Set(books.flatMap((book) => book.tropes))]}
           onFilterChange={handleFilterChange}
-        />
+        /> */}
       </Box>
 
       {/* Introductory Text */}
