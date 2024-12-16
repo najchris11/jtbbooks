@@ -7,11 +7,9 @@ import jtbLogo from '/public/logos/jtbLogoBlackTransparent.png';
 import annait from '/public/authors/alj.jpg';
 import mc from '/public/authors/mcj.jpg';
 import tiana from '/public/authors/tm.jpeg';
-
-
+import Link from 'next/link';
 
 const Gloria = localFont({ src: '/fonts/Gloria.ttf' });
-
 
 export default function Home() {
   return (
@@ -48,20 +46,32 @@ export default function Home() {
         >
           <Box
             sx={{
-              flex: '1 1 auto',
+              flex: { xs: '1 1 auto', md: '0 0 33%' }, // Change to 1/3 width on desktop
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
-              mb: { xs: 2, md: 0 }, // Add margin bottom on mobile
+              alignItems: 'flex-start', // Align to top
+              mb: { xs: 2, md: 0 },
             }}
           >
-            <Image
-              src={jtbLogo}
-              width={200}
-              height={200}
-              alt="JTB Logo in Black"
-              style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
-            />
+            <Box
+              sx={{
+                width: '100%',
+                maxWidth: { xs: '200px', md: '100%' },
+              }}
+            >
+              <Image
+                src={jtbLogo}
+                width={0} // Let next/image calculate width
+                height={0} // Let next/image calculate height
+                sizes="(max-width: 768px) 200px, 33vw"
+                priority
+                alt="JTB Logo in Black"
+                style={{ 
+                  width: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
           </Box>
           <CardContent
             sx={{
@@ -122,6 +132,7 @@ export default function Home() {
               flexDirection: 'column',
               alignItems: 'center',
               mb: { xs: 2, md: 0 },
+              mx: 2, // Add horizontal margin between authors
             }}
           >
             <Image
@@ -129,15 +140,20 @@ export default function Home() {
               width={150}
               height={150}
               alt="Author 1"
-              style={{ borderRadius: '50%' }}
+              style={{ 
+                borderRadius: '50%',
+                objectFit: 'cover' // Prevent image stretching
+              }}
             />
             <Typography variant="h6" gutterBottom>
-              Annait L.J.
+              Annait LJ
             </Typography>
-            <Typography variant="body2">
-            Annait is a 25 year old dystopian fantasy author who spends most of the writing process daydreaming. When she’s not serving time in the military, she’s dreaming of getting out. When she’s not doing either activity, she is in fact, dreaming. Her favorite genres to read are mystery and fantasy. You can find Annait staring at a sunset, the moon, or her reflection depending on the time of day.
-            https://www.authorannait.com/
+            <Typography variant="body2" sx={{ mb: 2 }}> {/* Add margin bottom for spacing */}
+              Annait LJ is a contemporary romance author who loves writing about Black love in all its forms. When she's not writing, she can be found curating her next read, playing video games, or analyzing TV shows with her husband.
             </Typography>
+            <Link href="https://www.annaitlj.com/" target="_blank" rel="noopener noreferrer">
+              www.annaitlj.com
+            </Link>
           </Box>
 
           {/* Author 2 */}
@@ -148,6 +164,7 @@ export default function Home() {
               flexDirection: 'column',
               alignItems: 'center',
               mb: { xs: 2, md: 0 },
+              mx: 2,
             }}
           >
             <Image
@@ -155,15 +172,20 @@ export default function Home() {
               width={150}
               height={150}
               alt="Author 2"
-              style={{ borderRadius: '50%' }}
+              style={{ 
+                borderRadius: '50%',
+                objectFit: 'cover'
+              }}
             />
             <Typography variant="h6" gutterBottom>
               M. C. Jeter
             </Typography>
-            <Typography variant="body2">
-            M. C. Jeter is a new-adult and young adult fantasy romance author. When she’s not writing, she can be found studying for the MCAT or working at a local clinic. Her stories feature strong female leads who learn to embrace the magic within them, and she has many more stories she wishes to tell.
-            https://www.mcjeterbooks.com/
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              M. C. Jeter is a new-adult and young adult fantasy romance author. When she's not writing, she can be found studying for the MCAT or working at a local clinic. Her stories feature strong female leads who learn to embrace the magic within them, and she has many more stories she wishes to tell.
             </Typography>
+            <Link href="https://www.mcjeterbooks.com/" target="_blank" rel="noopener noreferrer">
+              www.mcjeterbooks.com
+            </Link>
           </Box>
 
           {/* Author 3 */}
@@ -173,6 +195,7 @@ export default function Home() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              mx: 2,
             }}
           >
             <Image
@@ -180,16 +203,20 @@ export default function Home() {
               width={150}
               height={150}
               alt="Author 3"
-              style={{ borderRadius: '50%' }}
+              style={{ 
+                borderRadius: '50%',
+                objectFit: 'cover'
+              }}
             />
             <Typography variant="h6" gutterBottom>
               Tiana M
             </Typography>
-            <Typography variant="body2">
-            Tiana M is a 23 year old dystopian fantasy author who writes about dark themes with positive messages. When she’s not working one of her part time jobs, she's playing Zelda or Stardew valley. Her favorite genre to read is dystopian and fantasy with a little bit of romance. You can find Slim building another Lego set or crocheting a blanket depending on the mood she’s in.
-https://www.slims-universe.com/
-
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Tiana M is a 23 year old dystopian fantasy author who writes about dark themes with positive messages. When she's not working one of her part time jobs, she's playing Zelda or Stardew valley. Her favorite genre to read is dystopian and fantasy with a little bit of romance. You can find Slim building another Lego set or crocheting a blanket depending on the mood she's in.
             </Typography>
+            <Link href="https://www.slims-universe.com/" target="_blank" rel="noopener noreferrer">
+              www.slims-universe.com
+            </Link>
           </Box>
         </Box>
       </Card>

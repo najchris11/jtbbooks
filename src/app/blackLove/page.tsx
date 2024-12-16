@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
 import { books } from '../books';
-import BookGrid from '@/app/components/bookGrid';
+import theme from "@/theme";
+// import BookGrid from '@/app/components/bookGrid';
 import FilterButtons from '@/app/components/filterButtons';
 
 export default function BlackLoveShelf() {
@@ -84,7 +85,21 @@ export default function BlackLoveShelf() {
       </Box>
 
       {/* Book Grid with Filters */}
-      <BookGrid books={books} filters={selectedFilters} searchQuery={searchQuery} />
+      {/* <BookGrid books={books} filters={selectedFilters} searchQuery={searchQuery} /> */}
+      <Box
+        sx={{
+          mt: 3,
+          padding: 4,
+          backgroundColor: theme.palette.background.paper, // Use secondary background color
+          borderRadius: 2,
+          boxShadow: 3,
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h1" sx={{ color: theme.palette.text.primary }}>
+          Coming soon!
+        </Typography>
+      </Box>
     </Box>
   );
 }
