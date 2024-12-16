@@ -3,7 +3,7 @@
 import { Box, Typography, Card, CardContent } from '@mui/material';
 import localFont from 'next/font/local';
 import Image from 'next/image';
-import jtbLogo from '/public/logos/jtbLogoBlackTransparent.png';
+import jtbLogo from '/public/logos/jtbLogoTransparent.png';
 import annait from '/public/authors/alj.jpg';
 import mc from '/public/authors/mcj.jpg';
 import tiana from '/public/authors/tm.jpeg';
