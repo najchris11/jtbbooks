@@ -98,7 +98,7 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Buy Now
+          Download for Free
         </Button>
       </Box>
     </Modal>

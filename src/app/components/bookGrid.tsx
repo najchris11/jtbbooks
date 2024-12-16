@@ -87,26 +87,25 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
         sx={{
           position: 'relative',
           width: '100%',
-          maxWidth: 800,
           margin: '0 auto',
-          height: '80vh',
-          backgroundImage: 'url(/genericBookshelves/1.png)', // Replace with your frame image
-          backgroundSize: 'contain',
+          minHeight: '100vh',
+          backgroundImage: 'url(/genericBookshelves/4Walls.png)', // Replace with your frame image
+          backgroundSize: '100% auto',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center top',
           overflow: 'hidden',
         }}
       >
         {/* Scrollable Content */}
         <Box
           sx={{
-            position: 'absolute',
+            position: 'relative',
             top: '5%',
             left: '5%',
             right: '5%',
             bottom: '5%',
             overflowY: 'auto',
-            padding: 2,
+            padding: 0,
           }}
         >
           {/* Books Grid */}
@@ -146,7 +145,7 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
                       left: 0,
                       width: '100%',
                       height: '10px',
-                      backgroundImage: 'url(/genericBookshelves/shelf.png)', // Replace with your shelf image
+                      backgroundImage: 'url(/shelf.png)', // Replace with your shelf image
                       backgroundRepeat: 'repeat-x',
                     }}
                   />

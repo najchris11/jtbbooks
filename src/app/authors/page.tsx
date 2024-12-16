@@ -41,7 +41,7 @@ export default function Authors() {
             gutterBottom
             className={Gloria.className}
           >
-            Event Rules:
+            Apply Here: <Link href="https://forms.gle/mNEWgh7Bqr8ewrYx8">Google Form</Link>
           </Typography>
           <Typography variant="body1">
             Everything Black Love: February 1st 2025 - February 3rd, 2025
