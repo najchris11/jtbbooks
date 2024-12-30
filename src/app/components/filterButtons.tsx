@@ -47,14 +47,33 @@ export default function FilterButtons({
     });
   };
 
-  // Apply filters and close modal
-  const handleApplyFilters = () => {
+
+  // Add this helper function to check if any filters are selected
+const hasAnyFiltersSelected = (filters: typeof selectedFilters) => {
+  return Object.values(filters).some(filterGroup => 
+    Object.values(filterGroup).some(isSelected => isSelected)
+  );
+};
+
+  // Modify the handleApplyFilters function
+const handleApplyFilters = () => {
+  // Only apply filters if at least one is selected
+  if (hasAnyFiltersSelected(selectedFilters)) {
     onFilterChange({
       ...selectedFilters,
-      searchQuery: '', // Add searchQuery here
+      searchQuery: '',
     });
-    setIsModalOpen(false);
-  };
+  } else {
+    // If no filters are selected, pass empty filter objects
+    onFilterChange({
+      ageGroups: {},
+      genres: {},
+      tropes: {},
+      searchQuery: '',
+    });
+  }
+  setIsModalOpen(false);
+};
 
   // Clear all filters
   const handleClearFilters = () => {
