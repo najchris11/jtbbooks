@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Grid2, Box, Card, useMediaQuery } from '@mui/material';
-import { Book } from '@/app/types';
-import BookModal from '@/app/components/bookModal';
-import Image from 'next/image';
-import theme from '@/theme';
+import { useState } from "react";
+import { Grid2, Box, Card, useMediaQuery } from "@mui/material";
+import { Book } from "@/app/types";
+import BookModal from "@/app/components/bookModal";
+import Image from "next/image";
+import theme from "@/theme";
 
 interface BookGridProps {
   books: Book[];
@@ -17,7 +17,11 @@ interface BookGridProps {
   searchQuery: string; // Explicitly declare searchQuery as a separate prop
 }
 
-export default function BookGrid({ books, filters, searchQuery }: BookGridProps) {
+export default function BookGrid({
+  books,
+  filters,
+  searchQuery,
+}: BookGridProps) {
   const [openModal, setOpenModal] = useState(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
 
@@ -28,24 +32,25 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
       Object.keys(filters.genres).some(
         (genre) => filters.genres[genre] && book.subGenres.includes(genre)
       );
-  
+
     const ageGroupMatch =
       Object.keys(filters.ageGroups).length === 0 ||
       Object.keys(filters.ageGroups).some(
-        (ageGroup) => filters.ageGroups[ageGroup] && book.ageRange.includes(ageGroup)
+        (ageGroup) =>
+          filters.ageGroups[ageGroup] && book.ageRange.includes(ageGroup)
       );
-  
+
     const tropeMatch =
       Object.keys(filters.tropes).length === 0 ||
       Object.keys(filters.tropes).some(
         (trope) => filters.tropes[trope] && book.tropes.includes(trope)
       );
-  
+
     const searchQueryMatch =
-      searchQuery === '' ||
+      searchQuery === "" ||
       book.title.toLowerCase().includes(searchQuery) ||
       book.author.toLowerCase().includes(searchQuery);
-  
+
     return genreMatch && ageGroupMatch && tropeMatch && searchQueryMatch;
   });
 
@@ -55,10 +60,10 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
   };
 
   // Breakpoint detection
-  const isXs = useMediaQuery(theme.breakpoints.only('xs'));
-  const isSm = useMediaQuery(theme.breakpoints.only('sm'));
-  const isMd = useMediaQuery(theme.breakpoints.only('md'));
-  const isLg = useMediaQuery(theme.breakpoints.only('lg'));
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
+  const isSm = useMediaQuery(theme.breakpoints.only("sm"));
+  const isMd = useMediaQuery(theme.breakpoints.only("md"));
+  const isLg = useMediaQuery(theme.breakpoints.only("lg"));
   // const isXl = useMediaQuery(theme.breakpoints.only('xl'));
 
   const columns = {
@@ -70,42 +75,51 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
   };
 
   const currentBreakpoint = isXs
-    ? 'xs'
+    ? "xs"
     : isSm
-      ? 'sm'
-      : isMd
-        ? 'md'
-        : isLg
-          ? 'lg'
-          : 'xl';
+    ? "sm"
+    : isMd
+    ? "md"
+    : isLg
+    ? "lg"
+    : "xl";
 
   const columnsPerRow = columns[currentBreakpoint];
 
   return (
     <>
+      {/* Bookshelf Frame */}
       <Box
         sx={{
-          position: 'relative',
-          width: '100%',
-          margin: '0 auto',
-          minHeight: '100vh',
-          backgroundImage: 'url(/genericBookshelves/4Walls.png)', // Replace with your frame image
-          backgroundSize: '100% auto',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center top',
-          overflow: 'hidden',
+          position: "relative",
+          pt: 5,
+          pb: 5,
+          px: { xs: 2, sm: 3, md: 4 },
+          overflowY: "auto",
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          aspectRatio: "16/9", // e.g., if your image is 16:9. Adjust to match your image.
+          backgroundImage: "url(/genericBookshelves/4Walls.png)", // Replace with your frame image
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          transform: "none", // default
+          // For screens up to 'sm', rotate the frame:
+          [theme.breakpoints.down("sm")]: {
+            transform: "rotate(90deg)",
+            // might also need transformOrigin if you want the rotation pinned at a corner
+            transformOrigin: "left bottom",
+          },
         }}
       >
         {/* Scrollable Content */}
         <Box
           sx={{
-            position: 'relative',
-            top: '5%',
-            left: '5%',
-            right: '5%',
-            bottom: '5%',
-            overflowY: 'auto',
-            padding: 0,
+            overflowY: "auto",
+            padding: { xs: 2, sm: 3, md: 4 },
+            height: "100%", // fill the parent’s forced ratio
+            width: "100%",
           }}
         >
           {/* Books Grid */}
@@ -114,14 +128,14 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
               <Grid2
                 size={{ xs: 6, sm: 4, md: 3, lg: 2 }}
                 key={book.id}
-                sx={{ position: 'relative' }}
+                sx={{ position: "relative" }}
               >
                 <Card
                   onClick={() => handleBookClick(book)}
                   sx={{
-                    cursor: 'pointer',
-                    boxShadow: 'none',
-                    background: 'transparent',
+                    cursor: "pointer",
+                    boxShadow: "none",
+                    background: "transparent",
                   }}
                 >
                   <Image
@@ -130,23 +144,24 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
                     width={150}
                     height={225}
                     style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                      objectFit: 'contain',
+                      maxWidth: "100%",
+                      height: "auto",
+                      objectFit: "contain",
                     }}
                   />
                 </Card>
                 {/* Shelf Divider */}
-                {((index + 1) % columnsPerRow === 0 || index === filteredBooks.length - 1) && (
+                {((index + 1) % columnsPerRow === 0 ||
+                  index === filteredBooks.length - 1) && (
                   <Box
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       bottom: -10,
                       left: 0,
-                      width: '100%',
-                      height: '10px',
-                      backgroundImage: 'url(/shelf.png)', // Replace with your shelf image
-                      backgroundRepeat: 'repeat-x',
+                      width: "100%",
+                      height: "10px",
+                      backgroundImage: "url(/shelf.png)", // Replace with your shelf image
+                      backgroundRepeat: "repeat-x",
                     }}
                   />
                 )}
@@ -158,7 +173,11 @@ export default function BookGrid({ books, filters, searchQuery }: BookGridProps)
 
       {/* Book Modal */}
       {activeBook && (
-        <BookModal book={activeBook} open={openModal} onClose={() => setOpenModal(false)} />
+        <BookModal
+          book={activeBook}
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+        />
       )}
     </>
   );
