@@ -91,25 +91,30 @@ export default function BookGrid({
       {/* Bookshelf Frame */}
       <Box
         sx={{
-          position: "relative",
           pt: 5,
           pb: 5,
           px: { xs: 2, sm: 3, md: 4 },
           overflowY: "auto",
-          width: "100%",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          aspectRatio: "16/9", // e.g., if your image is 16:9. Adjust to match your image.
-          backgroundImage: "url(/genericBookshelves/4Walls.png)", // Replace with your frame image
-          backgroundSize: "contain",
+          
+          transform: "none", // default
+          [theme.breakpoints.down("md")]: {
+            width: "100%",
+            minHeight: "100vh",
+            backgroundImage: "url(/genericBookshelves/4WallsFlipped.png)", // Replace with your frame image
+            backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          transform: "none", // default
-          // For screens up to 'sm', rotate the frame:
-          [theme.breakpoints.down("sm")]: {
-            transform: "rotate(90deg)",
-            // might also need transformOrigin if you want the rotation pinned at a corner
-            transformOrigin: "left bottom",
+          },
+          [theme.breakpoints.up('md')]: {
+            position: "relative",
+            margin: "0 auto",
+            width: "100%",
+            maxWidth: "1200px",
+            aspectRatio: "16/9", // e.g., if your image is 16:9. Adjust to match your image.
+            backgroundImage: "url(/genericBookshelves/4Walls.png)", // Replace with your frame image
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           },
         }}
       >
