@@ -161,7 +161,7 @@ export default function Authors() {
             not free during this time, you will be removed from the website as
             we do not want to mislead any readers. If you are experiencing any
             difficulty in setting your book free, don&apos;t hesitate to send a
-            message in Discord, and one of the other participating authors or
+            message in <Link href="https://discord.gg/SWVQ36VVjA">Discord</Link>, and one of the other participating authors or
             the JTB staff can help guide you through the process.
           </Typography>
           <Typography variant="body1">
