@@ -100,7 +100,7 @@ export default function BookGrid({
           [theme.breakpoints.down("md")]: {
             width: "100%",
             minHeight: "100vh",
-            backgroundImage: "url(/genericBookshelves/4WallsFlipped.png)", // Replace with your frame image
+            backgroundImage: "url(/genericBookshelves/3Walls.png)", // Replace with your frame image
             backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
