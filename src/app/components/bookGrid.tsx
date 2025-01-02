@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Grid2, Box, Card, useMediaQuery } from "@mui/material";
+import { Grid2, Box, Card } from "@mui/material";
 import { Book } from "@/app/types";
 import BookModal from "@/app/components/bookModal";
 import Image from "next/image";
@@ -25,18 +25,21 @@ export default function BookGrid({
   const [openModal, setOpenModal] = useState(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
 
-// Utility function to get a title key without "The " at the start.
-function getSortableTitle(title: string): string {
-  // Strip out "The " at the beginning, case-insensitively, then trim whitespace
-  return title.replace(/^the\s+/i, "").trim().toLowerCase();
-}
+  // Utility function to get a title key without "The " at the start.
+  function getSortableTitle(title: string): string {
+    // Strip out "The " at the beginning, case-insensitively, then trim whitespace
+    return title
+      .replace(/^the\s+/i, "")
+      .trim()
+      .toLowerCase();
+  }
 
-// Sort your books array (in ascending order by title)
-const sortedBooks = [...books].sort((a, b) => {
-  const titleA = getSortableTitle(a.title);
-  const titleB = getSortableTitle(b.title);
-  return titleA.localeCompare(titleB);
-});
+  // Sort your books array (in ascending order by title)
+  const sortedBooks = [...books].sort((a, b) => {
+    const titleA = getSortableTitle(a.title);
+    const titleB = getSortableTitle(b.title);
+    return titleA.localeCompare(titleB);
+  });
 
   // Dynamic filtering logic
   const filteredBooks = sortedBooks.filter((book) => {
@@ -71,7 +74,7 @@ const sortedBooks = [...books].sort((a, b) => {
         book.subGenres.some((subGenre) =>
           subGenre.toLowerCase().includes(searchQuery)
         )) ||
-        // ageRanges contain the query? (Assuming ageRanges is an array of strings)
+      // ageRanges contain the query? (Assuming ageRanges is an array of strings)
       (book.ageRange &&
         book.ageRange.some((ageRange) =>
           ageRange.toLowerCase().includes(searchQuery)
@@ -87,33 +90,6 @@ const sortedBooks = [...books].sort((a, b) => {
     setActiveBook(book);
     setOpenModal(true);
   };
-
-  // Breakpoint detection
-  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
-  const isSm = useMediaQuery(theme.breakpoints.only("sm"));
-  const isMd = useMediaQuery(theme.breakpoints.only("md"));
-  const isLg = useMediaQuery(theme.breakpoints.only("lg"));
-  // const isXl = useMediaQuery(theme.breakpoints.only('xl'));
-
-  const columns = {
-    xs: 2,
-    sm: 3,
-    md: 4,
-    lg: 6,
-    xl: 6,
-  };
-
-  const currentBreakpoint = isXs
-    ? "xs"
-    : isSm
-    ? "sm"
-    : isMd
-    ? "md"
-    : isLg
-    ? "lg"
-    : "xl";
-
-  const columnsPerRow = columns[currentBreakpoint];
 
   return (
     <>

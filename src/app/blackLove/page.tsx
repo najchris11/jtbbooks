@@ -29,7 +29,6 @@ export default function BlackLoveShelf() {
 
   return (
     <Box sx={{ textAlign: "center", padding: 3 }}>
-
       {/* Introductory Text */}
       <Box
         sx={{
@@ -58,7 +57,6 @@ export default function BlackLoveShelf() {
           uplifting, celebrating, and empowering one another.
         </Typography>
       </Box>
-
 
       {/* Search Bar and Filter Button Row */}
       <Box
