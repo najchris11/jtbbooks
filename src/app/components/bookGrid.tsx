@@ -156,7 +156,7 @@ const sortedBooks = [...books].sort((a, b) => {
         >
           {/* Books Grid */}
           <Grid2 container spacing={2}>
-            {filteredBooks.map((book, index) => (
+            {filteredBooks.map((book) => (
               <Grid2
                 size={{ xs: 6, sm: 4, md: 3, lg: 2 }}
                 key={book.id}
@@ -182,21 +182,6 @@ const sortedBooks = [...books].sort((a, b) => {
                     }}
                   />
                 </Card>
-                {/* Shelf Divider */}
-                {((index + 1) % columnsPerRow === 0 ||
-                  index === filteredBooks.length - 1) && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: -10,
-                      left: 0,
-                      width: "100%",
-                      height: "10px",
-                      backgroundImage: "url(/shelf.png)", // Replace with your shelf image
-                      backgroundRepeat: "repeat-x",
-                    }}
-                  />
-                )}
               </Grid2>
             ))}
           </Grid2>
