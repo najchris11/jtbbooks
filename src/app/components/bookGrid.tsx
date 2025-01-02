@@ -46,10 +46,26 @@ export default function BookGrid({
         (trope) => filters.tropes[trope] && book.tropes.includes(trope)
       );
 
+    // Example: modifies the search query logic to also match subGenres and tropes
+
     const searchQueryMatch =
       searchQuery === "" ||
+      // Title or Author contain the query?
       book.title.toLowerCase().includes(searchQuery) ||
-      book.author.toLowerCase().includes(searchQuery);
+      book.author.toLowerCase().includes(searchQuery) ||
+      // subGenres contain the query? (Assuming subGenres is an array of strings)
+      (book.subGenres &&
+        book.subGenres.some((subGenre) =>
+          subGenre.toLowerCase().includes(searchQuery)
+        )) ||
+        // ageRanges contain the query? (Assuming ageRanges is an array of strings)
+      (book.ageRange &&
+        book.ageRange.some((ageRange) =>
+          ageRange.toLowerCase().includes(searchQuery)
+        )) ||
+      // tropes contain the query? (Assuming tropes is an array of strings)
+      (book.tropes &&
+        book.tropes.some((trope) => trope.toLowerCase().includes(searchQuery)));
 
     return genreMatch && ageGroupMatch && tropeMatch && searchQueryMatch;
   });
@@ -95,17 +111,15 @@ export default function BookGrid({
           pb: 5,
           px: { xs: 2, sm: 3, md: 4 },
           overflowY: "auto",
-          
-          transform: "none", // default
           [theme.breakpoints.down("md")]: {
             width: "100%",
-            minHeight: "100vh",
-            backgroundImage: "url(/genericBookshelves/3Walls.png)", // Replace with your frame image
+            backgroundImage: "url(/genericBookshelves/4WallsVert.png)", // Replace with your frame image
+            aspectRatio: "9/16", // e.g., if your image is 16:9. Adjust to match your image.
             backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           },
-          [theme.breakpoints.up('md')]: {
+          [theme.breakpoints.up("md")]: {
             position: "relative",
             margin: "0 auto",
             width: "100%",

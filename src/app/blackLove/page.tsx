@@ -71,7 +71,7 @@ export default function BlackLoveShelf() {
         }}
       >
         <TextField
-          label="Search by title, genre, trope, or author"
+          label="Search by title, genre, trope, age range, or author"
           variant="outlined"
           value={searchQuery}
           onChange={handleSearchChange}
