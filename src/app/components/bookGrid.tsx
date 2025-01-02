@@ -25,8 +25,21 @@ export default function BookGrid({
   const [openModal, setOpenModal] = useState(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
 
+// Utility function to get a title key without "The " at the start.
+function getSortableTitle(title: string): string {
+  // Strip out "The " at the beginning, case-insensitively, then trim whitespace
+  return title.replace(/^the\s+/i, "").trim().toLowerCase();
+}
+
+// Sort your books array (in ascending order by title)
+const sortedBooks = [...books].sort((a, b) => {
+  const titleA = getSortableTitle(a.title);
+  const titleB = getSortableTitle(b.title);
+  return titleA.localeCompare(titleB);
+});
+
   // Dynamic filtering logic
-  const filteredBooks = books.filter((book) => {
+  const filteredBooks = sortedBooks.filter((book) => {
     const genreMatch =
       Object.keys(filters.genres).length === 0 ||
       Object.keys(filters.genres).some(
