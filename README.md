@@ -1,8 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JTBBooks
+
+A [Next.js](https://nextjs.org) application for browsing, filtering, and discovering books. Users can apply filters (genre, age group, tropes) or perform keyword searches, and view details for each book in a modal.
+
+**Deployed via Vercel** at [jtbbooks.com](https://jtbbooks.com)
+
+---
+
+## Table of Contents
+
+1. [Features](#features)  
+2. [Getting Started](#getting-started)  
+3. [Project Structure](#project-structure)  
+4. [Scripts](#scripts)  
+6. [Deployment](#deployment)  
+7. [Contributing](#contributing)  
+
+---
+
+## Features
+
+- **BookGrid**: Displays books in a responsive grid.
+- **FilterButtons**: Opens a modal to toggle filtering options for genres, age groups, and tropes.
+- **Search Query**: Users can also search by keywords (e.g., book title or author).
+- **Responsive Design**: Uses Material-UI and custom frames to adapt to mobile, tablet, and desktop.
+- **BookModal**: Clicking on a book opens a modal with more details.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) version 16+
+- npm or yarn (whichever you prefer)
+
+### Installation
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/YourUsername/jtbbooks.git
+cd jtbbooks
+```
+
+2. **Install dependencies:**
+
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
+```
+
+3. **Start the development server:**
 
 ```bash
 npm run dev
@@ -10,25 +61,105 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+A brief overview of key files and directories:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```plaintext
+.
+├─ app/
+│  ├─ layout.tsx                # Next.js root layout
+│  ├─ page.tsx                  # Root page
+│  ├─ components/
+│  │  ├─ bookGrid.tsx           # Main grid for displaying books
+│  │  ├─ bookModal.tsx          # Modal window for book details
+│  │  ├─ filterButtons.tsx      # Modal and toggles for filtering
+│  │  └─ navbar.tsx             # Navigation bar
+│  └─ [...other pages/folders...]
+├─ public/
+│  ├─ covers/                   # Sample book cover images
+│  └─ genericBookshelves/       # Frame images for the bookshelf
+├─ theme.ts                     # MUI theme configuration
+├─ README.md                    # Project documentation
+├─ package.json
+└─ tsconfig.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **`app/components/bookGrid.tsx`**: Renders the grid of books and handles clicks to open **BookModal**.  
+- **`app/components/filterButtons.tsx`**: Provides a filter modal and sends selected filters (genres, age groups, tropes, search query) to the parent.  
+- **`theme.ts`**: Defines your Material-UI color palette and typography.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+In your `package.json`, you might have the following scripts:
+
+- **`dev`**: Starts the development server.
+
+```bash
+npm run dev
+```
+
+- **`build`**: Creates an optimized production build.
+
+```bash
+npm run build
+```
+
+- **`start`**: Runs the production build.
+
+```bash
+npm run start
+```
+
+- **`lint`**: Lints the code using ESLint.
+
+```bash
+npm run lint
+```
+
+---
+
+## Deployment
+
+This application is **deployed via [Vercel](https://vercel.com/)** at **[jtbbooks.com](https://jtbbooks.com)**.
+
+To deploy yourself:
+
+1. Push your code to GitHub (or GitLab/Bitbucket).
+2. Import your repository into Vercel and configure build settings (defaults usually work for Next.js).
+3. Vercel will handle building and hosting automatically.
+
+Alternatively, you can run:
+
+```bash
+npm run build
+npm run start
+```
+
+on your own server or container environment to serve the production build.
+
+---
+
+## Contributing
+
+1. **Fork** the repository.
+2. **Create a branch** (`git checkout -b feature/fooBar`).
+3. **Commit** your changes (`git commit -m 'Add some fooBar'`).
+4. **Push** to the branch (`git push origin feature/fooBar`).
+5. **Open a Pull Request** in GitHub.
+
+---
+
+### Questions?
+
+If you have any questions or suggestions, feel free to open an [issue](https://github.com/najchris11/jtbbooks/issues). Feedback is always welcome!
+
+**Enjoy building with Next.js and happy coding!**
