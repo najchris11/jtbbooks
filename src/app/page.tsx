@@ -257,7 +257,7 @@ export default function Home() {
             <Typography variant="body2" sx={{ mb: 2 }}>
               Tiana M is a 23 year old dystopian fantasy author who writes about
               dark themes with positive messages. When she&apos;s not working
-              one of her part time jobs, she's playing Zelda or Stardew valley.
+              one of her part time jobs, she&apos;s playing Zelda or Stardew valley.
               Her favorite genre to read is dystopian and fantasy with a little
               bit of romance. You can find Slim building another Lego set or
               crocheting a blanket depending on the mood she&apos;s in.
