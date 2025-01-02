@@ -24,7 +24,7 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
           position: 'relative',
           maxWidth: 600,
           width: '90vw',
-          height: '80vh',
+          maxHeight: '80vh',
           overflowY: 'auto',
           backgroundColor: 'background.paper',
           padding: 4,
