@@ -173,12 +173,13 @@ export default function Home() {
               Annait LJ
             </Typography>
             <Typography variant="body2" sx={{ mb: 2 }}>
-              {" "}
-              {/* Add margin bottom for spacing */}
-              Annait LJ is a contemporary romance author who loves writing about
-              Black love in all its forms. When she&apos;s not writing, she can
-              be found curating her next read, playing video games, or analyzing
-              TV shows with her husband.
+              Annait is a 25 year old dystopian fantasy author who spends most
+              of the writing process daydreaming. When she&apos;s not serving
+              time in the military, she&apos;s dreaming of getting out. When
+              she&apos;s not doing either activity, she is in fact, dreaming.
+              Her favorite genres to read are mystery and fantasy. You can find
+              Annait staring at a sunset, the moon, or her reflection depending
+              on the time of day.
             </Typography>
             <Box sx={{ mt: "auto" }}>
               <Link
@@ -256,10 +257,10 @@ export default function Home() {
             <Typography variant="body2" sx={{ mb: 2 }}>
               Tiana M is a 23 year old dystopian fantasy author who writes about
               dark themes with positive messages. When she&apos;s not working
-              one of her part time jobs, she&apos;s playing Zelda or Stardew
-              valley. Her favorite genre to read is dystopian and fantasy with a
-              little bit of romance. You can find Slim building another Lego set
-              or crocheting a blanket depending on the mood she&apos;s in.
+              one of her part time jobs, she's playing Zelda or Stardew valley.
+              Her favorite genre to read is dystopian and fantasy with a little
+              bit of romance. You can find Slim building another Lego set or
+              crocheting a blanket depending on the mood she&apos;s in.
             </Typography>
             <Box sx={{ mt: "auto" }}>
               <Link
