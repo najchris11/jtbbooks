@@ -183,11 +183,11 @@ export default function Home() {
             </Typography>
             <Box sx={{ mt: "auto" }}>
               <Link
-                href="https://www.annaitlj.com/"
+                href="https://www.authorannait.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                www.annaitlj.com
+                https://www.authorannait.com/
               </Link>
             </Box>
           </Box>
