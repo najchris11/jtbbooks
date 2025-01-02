@@ -38,30 +38,30 @@ A [Next.js](https://nextjs.org) application for browsing, filtering, and discove
 
 1. **Clone the repository:**
 
-\`\`\`bash
+```bash
 git clone https://github.com/YourUsername/jtbbooks.git
 cd jtbbooks
-\`\`\`
+```
 
 2. **Install dependencies:**
 
-\`\`\`bash
+```bash
 npm install
 # or
 yarn
 # or
 pnpm install
-\`\`\`
+```
 
 3. **Start the development server:**
 
-\`\`\`bash
+```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-\`\`\`
+```
 
 Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
@@ -71,7 +71,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the app in your brow
 
 A brief overview of key files and directories:
 
-\`\`\`plaintext
+```plaintext
 .
 ├─ app/
 │  ├─ layout.tsx                # Next.js root layout
@@ -89,41 +89,41 @@ A brief overview of key files and directories:
 ├─ README.md                    # Project documentation
 ├─ package.json
 └─ tsconfig.json
-\`\`\`
+```
 
-- **\`app/components/bookGrid.tsx\`**: Renders the grid of books and handles clicks to open **BookModal**.  
-- **\`app/components/filterButtons.tsx\`**: Provides a filter modal and sends selected filters (genres, age groups, tropes, search query) to the parent.  
-- **\`theme.ts\`**: Defines your Material-UI color palette and typography.
+- **`app/components/bookGrid.tsx`**: Renders the grid of books and handles clicks to open **BookModal**.  
+- **`app/components/filterButtons.tsx`**: Provides a filter modal and sends selected filters (genres, age groups, tropes, search query) to the parent.  
+- **`theme.ts`**: Defines your Material-UI color palette and typography.
 
 ---
 
 ## Scripts
 
-In your \`package.json\`, you might have the following scripts:
+In your `package.json`, you might have the following scripts:
 
-- **\`dev\`**: Starts the development server.
+- **`dev`**: Starts the development server.
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
-- **\`build\`**: Creates an optimized production build.
+- **`build`**: Creates an optimized production build.
 
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 
-- **\`start\`**: Runs the production build.
+- **`start`**: Runs the production build.
 
-\`\`\`bash
+```bash
 npm run start
-\`\`\`
+```
 
-- **\`lint\`**: Lints the code using ESLint.
+- **`lint`**: Lints the code using ESLint.
 
-\`\`\`bash
+```bash
 npm run lint
-\`\`\`
+```
 
 ---
 
@@ -139,10 +139,10 @@ To deploy yourself:
 
 Alternatively, you can run:
 
-\`\`\`bash
+```bash
 npm run build
 npm run start
-\`\`\`
+```
 
 on your own server or container environment to serve the production build.
 
@@ -151,9 +151,9 @@ on your own server or container environment to serve the production build.
 ## Contributing
 
 1. **Fork** the repository.
-2. **Create a branch** (\`git checkout -b feature/fooBar\`).
-3. **Commit** your changes (\`git commit -m 'Add some fooBar'\`).
-4. **Push** to the branch (\`git push origin feature/fooBar\`).
+2. **Create a branch** (`git checkout -b feature/fooBar`).
+3. **Commit** your changes (`git commit -m 'Add some fooBar'`).
+4. **Push** to the branch (`git push origin feature/fooBar`).
 5. **Open a Pull Request** in GitHub.
 
 ---
