@@ -19,7 +19,7 @@ import localFont from 'next/font/local';
 const pages = [
   { label: 'Home', path: '/' },
   { label: 'Black Love', path: '/blackLove' },
-  { label: 'Fantasy', path: '/fantasy' },
+  { label: 'Magic in Freedom', path: '/magicInFreedom' },
   { label: 'Authors', path: '/authors' },
   // Add additional pages here
 ];

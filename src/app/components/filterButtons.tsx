@@ -1,8 +1,17 @@
-'use client';
+"use client";
 
-import { Box, IconButton, Tooltip, Typography, Modal, Tabs, Tab, Button } from '@mui/material';
-import TagIcon from '@mui/icons-material/Label';
-import { useState } from 'react';
+import {
+  Box,
+  IconButton,
+  Tooltip,
+  Typography,
+  Modal,
+  Tabs,
+  Tab,
+  Button,
+} from "@mui/material";
+import TagIcon from "@mui/icons-material/Label";
+import { useState } from "react";
 
 interface FilterButtonsProps {
   ageGroups: string[];
@@ -36,7 +45,10 @@ export default function FilterButtons({
   const [activeTab, setActiveTab] = useState(0); // Tabs for switching categories
 
   // Toggle individual filters
-  const handleToggleFilter = (filterType: keyof typeof selectedFilters, filter: string) => {
+  const handleToggleFilter = (
+    filterType: keyof typeof selectedFilters,
+    filter: string
+  ) => {
     const updatedFilters = {
       ...selectedFilters[filterType],
       [filter]: !selectedFilters[filterType][filter],
@@ -47,12 +59,30 @@ export default function FilterButtons({
     });
   };
 
-  // Apply filters and close modal
+  // Add this helper function to check if any filters are selected
+  const hasAnyFiltersSelected = (filters: typeof selectedFilters) => {
+    return Object.values(filters).some((filterGroup) =>
+      Object.values(filterGroup).some((isSelected) => isSelected)
+    );
+  };
+
+  // Modify the handleApplyFilters function
   const handleApplyFilters = () => {
-    onFilterChange({
-      ...selectedFilters,
-      searchQuery: '', // Add searchQuery here
-    });
+    // Only apply filters if at least one is selected
+    if (hasAnyFiltersSelected(selectedFilters)) {
+      onFilterChange({
+        ...selectedFilters,
+        searchQuery: "",
+      });
+    } else {
+      // If no filters are selected, pass empty filter objects
+      onFilterChange({
+        ageGroups: {},
+        genres: {},
+        tropes: {},
+        searchQuery: "",
+      });
+    }
     setIsModalOpen(false);
   };
 
@@ -67,23 +97,30 @@ export default function FilterButtons({
       ageGroups: {},
       genres: {},
       tropes: {},
-      searchQuery: '', // Clear searchQuery
+      searchQuery: "", // Clear searchQuery
     });
   };
 
   // Render filter options as pills
-  const renderFilterButtons = (filterType: keyof typeof selectedFilters, options: string[]) => (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2 }}>
+  const renderFilterButtons = (
+    filterType: keyof typeof selectedFilters,
+    options: string[]
+  ) => (
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
       {options.map((option) => (
         <Button
           key={option}
-          variant={selectedFilters[filterType][option] ? 'contained' : 'outlined'}
+          variant={
+            selectedFilters[filterType][option] ? "contained" : "outlined"
+          }
           onClick={() => handleToggleFilter(filterType, option)}
           sx={{
             borderRadius: 20,
-            textTransform: 'capitalize',
-            color: selectedFilters[filterType][option] ? 'white' : 'inherit',
-            backgroundColor: selectedFilters[filterType][option] ? 'primary.main' : 'inherit',
+            textTransform: "capitalize",
+            color: selectedFilters[filterType][option] ? "white" : "inherit",
+            backgroundColor: selectedFilters[filterType][option]
+              ? "primary.main"
+              : "inherit",
           }}
         >
           {option}
@@ -105,26 +142,30 @@ export default function FilterButtons({
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
         <Box
           sx={{
-            position: 'relative',
-            width: '90%',
+            position: "relative",
+            width: "90%",
             maxWidth: 600,
-            bgcolor: 'background.paper',
+            bgcolor: "background.paper",
             p: 4,
             borderRadius: 2,
             boxShadow: 24,
           }}
         >
           {/* Modal Title */}
-          <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+          <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
             Select Filters
           </Typography>
 
           {/* Tabs for Filter Categories */}
-          <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)} centered>
+          <Tabs
+            value={activeTab}
+            onChange={(e, newValue) => setActiveTab(newValue)}
+            centered
+          >
             <Tab label="Age Groups" />
             <Tab label="Genres" />
             <Tab label="Tropes" />
@@ -132,13 +173,13 @@ export default function FilterButtons({
 
           {/* Tab Content */}
           <Box sx={{ mt: 2 }}>
-            {activeTab === 0 && renderFilterButtons('ageGroups', ageGroups)}
-            {activeTab === 1 && renderFilterButtons('genres', genres)}
-            {activeTab === 2 && renderFilterButtons('tropes', tropes)}
+            {activeTab === 0 && renderFilterButtons("ageGroups", ageGroups)}
+            {activeTab === 1 && renderFilterButtons("genres", genres)}
+            {activeTab === 2 && renderFilterButtons("tropes", tropes)}
           </Box>
 
           {/* Action Buttons */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
             <Button variant="outlined" onClick={handleClearFilters}>
               Clear Filters
             </Button>

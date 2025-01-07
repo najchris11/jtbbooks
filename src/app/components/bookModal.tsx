@@ -1,8 +1,15 @@
-'use client';
+"use client";
 
-import { Modal, Box, Typography, IconButton, Button, Tooltip } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { Book } from '../types';
+import {
+  Modal,
+  Box,
+  Typography,
+  IconButton,
+  Button,
+  Tooltip,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Book } from "../types";
 
 interface BookModalProps {
   book: Book;
@@ -17,18 +24,20 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
       onClose={onClose}
       aria-labelledby="book-modal-title"
       aria-describedby="book-modal-description"
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
       <Box
         sx={{
-          position: 'relative',
+          position: "relative",
           maxWidth: 600,
-          width: '90%',
-          backgroundColor: 'background.paper',
+          width: "90vw",
+          maxHeight: "80vh",
+          overflowY: "auto",
+          backgroundColor: "background.paper",
           padding: 4,
           borderRadius: 3,
           boxShadow: 5,
-          textAlign: 'center',
+          textAlign: "center",
         }}
       >
         {/* Close Button */}
@@ -36,7 +45,7 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
           aria-label="Close modal"
           onClick={onClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             top: 16,
             right: 16,
           }}
@@ -50,14 +59,14 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
           src={book.cover}
           alt={`Cover of ${book.title}`}
           sx={{
-            width: '100%',
+            width: "100%",
             maxWidth: 300,
-            margin: '0 auto',
+            margin: "0 auto",
             borderRadius: 2,
             mb: 3,
-            transition: 'transform 0.3s',
-            '&:hover': {
-              transform: 'scale(1.05)',
+            transition: "transform 0.3s",
+            "&:hover": {
+              transform: "scale(1.05)",
             },
           }}
         />
@@ -66,14 +75,19 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
         <Typography variant="h5" id="book-modal-title" gutterBottom>
           {book.title}
         </Typography>
-        <Typography variant="subtitle1" sx={{ color: 'text.secondary', mb: 2 }}>
+        <Typography variant="subtitle1" sx={{ color: "text.secondary", mb: 2 }}>
           by {book.author}
         </Typography>
 
         {/* Tooltip for Tropes/Themes */}
         <Tooltip title="Tropes and Themes">
-          <Typography variant="body2" sx={{ fontStyle: 'italic', color: 'text.secondary' }}>
-            {[...book.subGenres, ...book.tropes, ...book.ageRange].sort().join(', ')}
+          <Typography
+            variant="body2"
+            sx={{ fontStyle: "italic", color: "text.secondary" }}
+          >
+            {[...book.subGenres, ...book.tropes, ...book.ageRange]
+              .sort()
+              .join(", ")}
           </Typography>
         </Tooltip>
 
@@ -90,9 +104,9 @@ export default function BookModal({ book, open, onClose }: BookModalProps) {
         <Button
           variant="contained"
           sx={{
-            padding: '10px 20px',
-            fontSize: '1rem',
-            textTransform: 'none',
+            padding: "10px 20px",
+            fontSize: "1rem",
+            textTransform: "none",
           }}
           href={book.link}
           target="_blank"
