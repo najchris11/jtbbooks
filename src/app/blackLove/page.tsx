@@ -60,13 +60,6 @@ export default function BlackLoveShelf() {
           Everything Black Love: a collective commitment to prioritizing,
           uplifting, celebrating, and empowering one another.
         </Typography>
-        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          Further, after much deliberation, the JTB staff has decided to include Interracial Black
-          Love in which the Black main character is giving and receiving love. We do believe it 
-          is a unique branch of Black Love and should be represented. We want this event to include
-          experiences that happen across the Black diaspora, and we believe we would be doing you a 
-          disservice by not including this branch.
-          </Typography>
       </Box>
 
       {/* Search Bar and Filter Button Row */}
