@@ -364,4 +364,15 @@ export const books: Book[] = [
     description: "Jasmine didn't know who she was or where she came from. And the memory of the father of her son was lost too. But when her son disappears, she will stop at nothing to find him. Even if that means traveling through worlds she didn't know existed. ",
     link: 'https://www.amazon.com/dp/B0BQGYJW6P',
   },
+  {
+    id: 3,
+    title: "Blood Throne",
+    author: 'Teal Rose',
+    ageRange: ['New Adult'],
+    subGenres: ['Romantic Love'],
+    tropes: ['Enemies to Lovers', 'Fantasy', 'Fated Love', 'Paranormal'],
+    cover: '/covers/bloodThrone.jpg',
+    description: "Beyond the Houston city limits, Kaydian Thibodeaux must choose between her legacy and a human life. As her decision looms and an enigmatic Alpha complicates her path, she faces a crucial choice: forge her own destiny or become the queen.",
+    link: 'https://a.co/d/a4jr5Qd',
+  },
 ]

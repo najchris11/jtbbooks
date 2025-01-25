@@ -5,12 +5,19 @@ import { Box, TextField, Typography } from "@mui/material";
 import { books } from "../books";
 import BookGrid from "@/app/components/bookGrid";
 import FilterButtons from "@/app/components/filterButtons";
+import banner from "/public/banners/blackLove.png";
+import Image from "next/image";
 
 export default function BlackLoveShelf() {
   const [selectedFilters, setSelectedFilters] = useState({
     ageGroups: {} as { [key: string]: boolean },
     genres: {} as { [key: string]: boolean },
     tropes: {} as { [key: string]: boolean },
+    blacklist: {
+      ageGroups: {} as { [key: string]: boolean },
+      genres: {} as { [key: string]: boolean },
+      tropes: {} as { [key: string]: boolean },
+    },
   });
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -18,6 +25,11 @@ export default function BlackLoveShelf() {
     ageGroups: { [key: string]: boolean };
     genres: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    blacklist: {
+      ageGroups: { [key: string]: boolean };
+      genres: { [key: string]: boolean };
+      tropes: { [key: string]: boolean };
+    };
     searchQuery: string;
   }) => {
     setSelectedFilters(filters);
@@ -60,6 +72,19 @@ export default function BlackLoveShelf() {
           Everything Black Love: a collective commitment to prioritizing,
           uplifting, celebrating, and empowering one another.
         </Typography>
+        <br />
+        <Image
+                src={banner}
+                width={0} // Let next/image calculate width
+                height={0} // Let next/image calculate height
+                sizes="(max-width: 768px) 200px, 33vw"
+                priority
+                alt="Everything Black Love book above a bookshelf"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
+              />
       </Box>
 
       {/* Search Bar and Filter Button Row */}
@@ -81,9 +106,9 @@ export default function BlackLoveShelf() {
         />
         {/* Filter Buttons */}
         <FilterButtons
-          ageGroups={[...new Set(books.flatMap((book) => book.ageRange))]}
-          genres={[...new Set(books.flatMap((book) => book.subGenres))]}
-          tropes={[...new Set(books.flatMap((book) => book.tropes))]}
+          ageGroups={[...new Set(books.flatMap((book) => book.ageRange))].sort()}
+          genres={[...new Set(books.flatMap((book) => book.subGenres))].sort()}
+          tropes={[...new Set(books.flatMap((book) => book.tropes))].sort()}
           onFilterChange={handleFilterChange}
         />
       </Box>
