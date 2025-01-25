@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import "./globals.css";
 import Navbar from "./components/navbar";
 
@@ -34,6 +35,37 @@ export default function RootLayout({
               <Navbar />
               <Box component="main" sx={{ flexGrow: 1 }}>
                 {children}
+              </Box>
+              <Box
+                component="footer"
+                sx={{
+                  py: 2,
+                  px: 2,
+                  mt: 'auto',
+                  backgroundColor: 'background.paper',
+                  borderTop: 1,
+                  borderColor: 'divider',
+                  textAlign: 'center',
+                }}
+              >
+                <Link
+                  href="https://discord.gg/SWVQ36VVjA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    textDecoration: 'none',
+                    color: 'primary.main',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                    },
+                    fontSize: {
+                      xs: '0.875rem',
+                      sm: '1rem',
+                    },
+                  }}
+                >
+                  Join our Discord!
+                </Link>
               </Box>
             </Box>
           </ThemeProvider>

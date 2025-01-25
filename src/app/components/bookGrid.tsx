@@ -10,80 +10,88 @@ import theme from "@/theme";
 interface BookGridProps {
   books: Book[];
   filters: {
-    genres: { [key: string]: boolean };
     ageGroups: { [key: string]: boolean };
+    genres: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    blacklist: {
+      ageGroups: { [key: string]: boolean };
+      genres: { [key: string]: boolean };
+      tropes: { [key: string]: boolean };
+    };
   };
-  searchQuery: string; // Explicitly declare searchQuery as a separate prop
+  searchQuery: string;
 }
 
-export default function BookGrid({
-  books,
-  filters,
-  searchQuery,
-}: BookGridProps) {
+export default function BookGrid({ books, filters, searchQuery }: BookGridProps) {
+
   const [openModal, setOpenModal] = useState(false);
   const [activeBook, setActiveBook] = useState<Book | null>(null);
 
-  // Utility function to get a title key without "The " at the start.
-  function getSortableTitle(title: string): string {
-    // Strip out "The " at the beginning, case-insensitively, then trim whitespace
-    return title
-      .replace(/^the\s+/i, "")
-      .trim()
-      .toLowerCase();
-  }
+// Utility function to get a title key without "The " at the start.
+function getSortableTitle(title: string): string {
+  // Strip out "The " at the beginning, case-insensitively, then trim whitespace
+  return title
+    .replace(/^the\s+/i, "")
+    .trim()
+    .toLowerCase();
+}
 
-  // Sort your books array (in ascending order by title)
-  const sortedBooks = [...books].sort((a, b) => {
-    const titleA = getSortableTitle(a.title);
-    const titleB = getSortableTitle(b.title);
-    return titleA.localeCompare(titleB);
-  });
+// Sort your books array (in ascending order by title)
+const sortedBooks = [...books].sort((a, b) => {
+  const titleA = getSortableTitle(a.title);
+  const titleB = getSortableTitle(b.title);
+  return titleA.localeCompare(titleB);
+});
 
-  // Dynamic filtering logic
   const filteredBooks = sortedBooks.filter((book) => {
-    const genreMatch =
-      Object.keys(filters.genres).length === 0 ||
-      Object.keys(filters.genres).some(
-        (genre) => filters.genres[genre] && book.subGenres.includes(genre)
-      );
+    // First check if the book matches any blacklisted criteria
+    const isBlacklisted = 
+      // Check blacklisted age groups
+      book.ageRange.some(age => filters.blacklist.ageGroups[age]) ||
+      // Check blacklisted genres
+      book.subGenres.some(genre => filters.blacklist.genres[genre]) ||
+      // Check blacklisted tropes
+      book.tropes.some(trope => filters.blacklist.tropes[trope]);
 
-    const ageGroupMatch =
-      Object.keys(filters.ageGroups).length === 0 ||
-      Object.keys(filters.ageGroups).some(
-        (ageGroup) =>
-          filters.ageGroups[ageGroup] && book.ageRange.includes(ageGroup)
-      );
+    // If book is blacklisted, exclude it
+    if (isBlacklisted) return false;
 
-    const tropeMatch =
-      Object.keys(filters.tropes).length === 0 ||
-      Object.keys(filters.tropes).some(
-        (trope) => filters.tropes[trope] && book.tropes.includes(trope)
-      );
+    // Handle search query
+    if (searchQuery) {
+      const searchTerms = searchQuery.toLowerCase();
+      const matchesSearch =
+        book.title.toLowerCase().includes(searchTerms) ||
+        book.author.toLowerCase().includes(searchTerms) ||
+        book.ageRange.some(age => age.toLowerCase().includes(searchTerms)) ||
+        book.subGenres.some(genre => genre.toLowerCase().includes(searchTerms)) ||
+        book.tropes.some(trope => trope.toLowerCase().includes(searchTerms));
 
-    // Example: modifies the search query logic to also match subGenres and tropes
+      if (!matchesSearch) return false;
+    }
 
-    const searchQueryMatch =
-      searchQuery === "" ||
-      // Title or Author contain the query?
-      book.title.toLowerCase().includes(searchQuery) ||
-      book.author.toLowerCase().includes(searchQuery) ||
-      // subGenres contain the query? (Assuming subGenres is an array of strings)
-      (book.subGenres &&
-        book.subGenres.some((subGenre) =>
-          subGenre.toLowerCase().includes(searchQuery)
-        )) ||
-      // ageRanges contain the query? (Assuming ageRanges is an array of strings)
-      (book.ageRange &&
-        book.ageRange.some((ageRange) =>
-          ageRange.toLowerCase().includes(searchQuery)
-        )) ||
-      // tropes contain the query? (Assuming tropes is an array of strings)
-      (book.tropes &&
-        book.tropes.some((trope) => trope.toLowerCase().includes(searchQuery)));
+    // Check if any filters are active
+    const hasActiveFilters =
+      Object.values(filters.ageGroups).some(Boolean) ||
+      Object.values(filters.genres).some(Boolean) ||
+      Object.values(filters.tropes).some(Boolean);
 
-    return genreMatch && ageGroupMatch && tropeMatch && searchQueryMatch;
+    // If no filters are active, show all non-blacklisted books
+    if (!hasActiveFilters) return true;
+
+    // Check if book matches active filters
+    const matchesAgeGroup =
+      !Object.values(filters.ageGroups).some(Boolean) ||
+      book.ageRange.some(age => filters.ageGroups[age]);
+
+    const matchesGenre =
+      !Object.values(filters.genres).some(Boolean) ||
+      book.subGenres.some(genre => filters.genres[genre]);
+
+    const matchesTrope =
+      !Object.values(filters.tropes).some(Boolean) ||
+      book.tropes.some(trope => filters.tropes[trope]);
+
+    return matchesAgeGroup && matchesGenre && matchesTrope;
   });
 
   const handleBookClick = (book: Book) => {

@@ -11,6 +11,7 @@ import {
   Button,
 } from "@mui/material";
 import TagIcon from "@mui/icons-material/Label";
+import BlockIcon from '@mui/icons-material/Block';
 import { useState } from "react";
 
 interface FilterButtonsProps {
@@ -21,6 +22,11 @@ interface FilterButtonsProps {
     ageGroups: { [key: string]: boolean };
     genres: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    blacklist: {
+      ageGroups: { [key: string]: boolean };
+      genres: { [key: string]: boolean };
+      tropes: { [key: string]: boolean };
+    };
     searchQuery: string; // Add searchQuery here
   }) => void;
 }
@@ -36,33 +42,111 @@ export default function FilterButtons({
     ageGroups: { [key: string]: boolean };
     genres: { [key: string]: boolean };
     tropes: { [key: string]: boolean };
+    blacklist: {
+      ageGroups: { [key: string]: boolean };
+      genres: { [key: string]: boolean };
+      tropes: { [key: string]: boolean };
+    };
   }>({
     ageGroups: {},
     genres: {},
     tropes: {},
+    blacklist: {
+      ageGroups: {},
+      genres: {},
+      tropes: {},
+    },
   });
 
   const [activeTab, setActiveTab] = useState(0); // Tabs for switching categories
 
   // Toggle individual filters
   const handleToggleFilter = (
-    filterType: keyof typeof selectedFilters,
-    filter: string
+    filterType: keyof Omit<typeof selectedFilters, 'blacklist'>,
+    filter: string,
+    isBlacklist: boolean = false
   ) => {
-    const updatedFilters = {
-      ...selectedFilters[filterType],
-      [filter]: !selectedFilters[filterType][filter],
-    };
-    setSelectedFilters({
-      ...selectedFilters,
-      [filterType]: updatedFilters,
-    });
+    const updatedFilters = { ...selectedFilters };
+    
+    if (isBlacklist) {
+      // Toggle blacklist
+      updatedFilters.blacklist[filterType] = {
+        ...updatedFilters.blacklist[filterType],
+        [filter]: !updatedFilters.blacklist[filterType][filter],
+      };
+      // Remove from regular filters if it exists
+      if (updatedFilters[filterType][filter]) {
+        delete updatedFilters[filterType][filter];
+      }
+    } else {
+      // Toggle regular filter
+      updatedFilters[filterType] = {
+        ...updatedFilters[filterType],
+        [filter]: !updatedFilters[filterType][filter],
+      };
+      // Remove from blacklist if it exists
+      if (updatedFilters.blacklist[filterType][filter]) {
+        delete updatedFilters.blacklist[filterType][filter];
+      }
+    }
+    
+    setSelectedFilters(updatedFilters);
   };
 
-  // Add this helper function to check if any filters are selected
+  // Update the renderFilterButtons function to include blacklist buttons
+  const renderFilterButtonsWithBlacklist = (
+    filterType: keyof Omit<typeof selectedFilters, 'blacklist'>,
+    options: string[]
+  ) => (
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
+      {options.map((option) => (
+        <Box key={option} sx={{ display: "flex", gap: 0.5, mb: 1 }}>
+          <Button
+            variant={selectedFilters[filterType][option] ? "contained" : "outlined"}
+            onClick={() => handleToggleFilter(filterType, option)}
+            sx={{
+              borderRadius: "20px 0 0 20px",
+              textTransform: "capitalize",
+              color: selectedFilters[filterType][option] ? "white" : "inherit",
+              backgroundColor: selectedFilters[filterType][option]
+                ? "primary.main"
+                : "inherit",
+            }}
+          >
+            {option}
+          </Button>
+          <Button
+            variant={selectedFilters.blacklist[filterType][option] ? "contained" : "outlined"}
+            onClick={() => handleToggleFilter(filterType, option, true)}
+            sx={{
+              borderRadius: "0 20px 20px 0",
+              minWidth: '40px',
+              backgroundColor: selectedFilters.blacklist[filterType][option] 
+                ? "error.main" 
+                : "inherit",
+              "&:hover": {
+                backgroundColor: selectedFilters.blacklist[filterType][option]
+                  ? "error.dark"
+                  : undefined,
+              },
+            }}
+          >
+            <BlockIcon fontSize="small" />
+          </Button>
+        </Box>
+      ))}
+    </Box>
+  );
+
+  // Update hasAnyFiltersSelected to include blacklist
   const hasAnyFiltersSelected = (filters: typeof selectedFilters) => {
-    return Object.values(filters).some((filterGroup) =>
-      Object.values(filterGroup).some((isSelected) => isSelected)
+    return (
+      Object.values(filters).some((filterGroup) =>
+        Object.values(filterGroup).some((isSelected) => isSelected)
+      ) ||
+      Object.values(filters.blacklist).some((filterGroup) =>
+        Object.values(filterGroup).some((isSelected) => isSelected)
+      )
     );
   };
 
@@ -80,6 +164,11 @@ export default function FilterButtons({
         ageGroups: {},
         genres: {},
         tropes: {},
+        blacklist: {
+          ageGroups: {},
+          genres: {},
+          tropes: {},
+        },
         searchQuery: "",
       });
     }
@@ -92,42 +181,24 @@ export default function FilterButtons({
       ageGroups: {},
       genres: {},
       tropes: {},
+      blacklist: {
+        ageGroups: {},
+        genres: {},
+        tropes: {}
+      }
     });
     onFilterChange({
       ageGroups: {},
       genres: {},
       tropes: {},
+      blacklist: {
+        ageGroups: {},
+        genres: {},
+        tropes: {}
+      },
       searchQuery: "", // Clear searchQuery
     });
   };
-
-  // Render filter options as pills
-  const renderFilterButtons = (
-    filterType: keyof typeof selectedFilters,
-    options: string[]
-  ) => (
-    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
-      {options.map((option) => (
-        <Button
-          key={option}
-          variant={
-            selectedFilters[filterType][option] ? "contained" : "outlined"
-          }
-          onClick={() => handleToggleFilter(filterType, option)}
-          sx={{
-            borderRadius: 20,
-            textTransform: "capitalize",
-            color: selectedFilters[filterType][option] ? "white" : "inherit",
-            backgroundColor: selectedFilters[filterType][option]
-              ? "primary.main"
-              : "inherit",
-          }}
-        >
-          {option}
-        </Button>
-      ))}
-    </Box>
-  );
 
   return (
     <Box>
@@ -173,9 +244,9 @@ export default function FilterButtons({
 
           {/* Tab Content */}
           <Box sx={{ mt: 2 }}>
-            {activeTab === 0 && renderFilterButtons("ageGroups", ageGroups)}
-            {activeTab === 1 && renderFilterButtons("genres", genres)}
-            {activeTab === 2 && renderFilterButtons("tropes", tropes)}
+            {activeTab === 0 && renderFilterButtonsWithBlacklist("ageGroups", ageGroups)}
+            {activeTab === 1 && renderFilterButtonsWithBlacklist("genres", genres)}
+            {activeTab === 2 && renderFilterButtonsWithBlacklist("tropes", tropes)}
           </Box>
 
           {/* Action Buttons */}
