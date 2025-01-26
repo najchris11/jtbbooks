@@ -182,7 +182,7 @@ export default function Authors() {
             <strong>Option 2:</strong> To set your book free without being
             enrolled in KDP Select, you MUST set your ebook free on all
             available vendors first and reach out to Amazon via email through
-            their customer service portal <Link href='https://kdp.amazon.com/en_US/contact-us'>here</Link>. This email should contain links
+            their customer service portal <Link href='https://kdp.amazon.com/en_US/help/topic/G201298240'>here</Link>. This email should contain links
             to where else your book is available to buy to prove your ebook is
             free elsewhere. In the dropdown, select “Pricing” then “Price
             Matching” and request a price match. This should be done a week
