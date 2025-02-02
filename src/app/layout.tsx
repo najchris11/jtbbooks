@@ -7,7 +7,8 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import "./globals.css";
 import Navbar from "./components/navbar";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "JTB Books",
@@ -35,7 +36,9 @@ export default function RootLayout({
               }}
             >
               <Navbar />
+              <SpeedInsights />
               <Box component="main" sx={{ flexGrow: 1 }}>
+              <Analytics />
                 {children}
               </Box>
               <Box
