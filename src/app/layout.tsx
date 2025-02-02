@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import "./globals.css";
 import Navbar from "./components/navbar";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "JTB Books",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Analytics />
         <AppRouterCacheProvider options={{ key: 'css' }}>
           <ThemeProvider theme={theme}>
             <CssBaseline /> {/* Global CSS reset */}
