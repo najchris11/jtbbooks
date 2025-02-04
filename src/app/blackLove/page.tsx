@@ -7,6 +7,7 @@ import BookGrid from "@/app/components/bookGrid";
 import FilterButtons from "@/app/components/filterButtons";
 import banner from "/public/banners/blackLove.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BlackLoveShelf() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -59,12 +60,11 @@ export default function BlackLoveShelf() {
         }}
       >
         <Typography variant="h6" sx={{ mb: 1 }}>
-          Celebrate Black Love
-          February 1st 2025 - February 3rd 2025
+        Everything Black Love February 2025 Catalog
         </Typography>
-        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+        {/* <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
           The Free Ebook Downloading Occasion of the Season
-        </Typography>
+        </Typography> */}
         <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
           In celebration of the month of love, JTB wants to embrace all types of
           love within the Black community. From romantic to familial and
@@ -72,6 +72,10 @@ export default function BlackLoveShelf() {
           Everything Black Love: a collective commitment to prioritizing,
           uplifting, celebrating, and empowering one another.
         </Typography>
+        <hr />
+        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+        This event is currently closed, if you would like to stay up to date on future Jump the Broom events, please follow our instagram <Link href="https://www.instagram.com/jtbbooks/">@jtbbooks</Link>
+          </Typography>
         <br />
         <Image
                 src={banner}
